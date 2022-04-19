@@ -60,8 +60,8 @@ class App {
         // Insert messages at the bottom
         messageList.insertAdjacentHTML("beforeend",html)
 
-        // Scroll to the bottom (change this when you get internet)
-        document.querySelector(`.message-container[data-id="${id}"]`).scrollIntoView({behavior: 'smooth'})
+        // Scroll to the bottom
+        messageList.lastElementChild.scrollIntoView({behavior: 'smooth'})
 
         messageInput.value = '';
 
