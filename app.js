@@ -110,6 +110,7 @@ class App {
 
     _changeTheme() {
         stylesheet.href = `./${theme.value}.css`
+        messageList.lastElementChild.scrollIntoView({behavior: 'smooth'})
     }
 
     _saveSettings(e) {
