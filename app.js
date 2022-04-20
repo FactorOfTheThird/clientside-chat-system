@@ -6,9 +6,12 @@ const messageInput = document.getElementById('messageInput');
 const messageList = document.getElementById('messages');
 const messageType = document.getElementById('messageType');
 const optionsEl = document.querySelector('.options');
+const inputCont = document.querySelector('.inputContainer');
 
 const alternate = document.getElementById('alternate');
 const theme = document.getElementById('theme');
+
+const stylesheet = document.getElementById('stylesheet')
 
 // Main App Class
 class App {
@@ -34,14 +37,26 @@ class App {
         e.preventDefault();
 
         const text = messageInput.value;
+        
+        const timeOptions = {
+            hour: 'numeric',
+            minute: '2-digit'
+        }
+        const timeStr = new Intl.DateTimeFormat(navigator.language, timeOptions).format(new Date())
+
         const type = messageType.value;
         const id = Math.trunc(Math.random() * 500_000 + 1)
         let html;
 
+        if (text.length === 0) return
+
         if (type === "msg-left") {
             html = `
             <div class="message-container ${type}" data-id='${id}'>
-                <div class="message">${text}</div>
+                <div class="msgHolder">
+                    <div class="message">${text}</div>
+                    <span class="msgTime">${timeStr}</span>
+                </div>
                 <button class="messageDelete">Delete</button>
             </div>
             `
@@ -49,7 +64,10 @@ class App {
             html = `
             <div class="message-container ${type}" data-id='${id}'>
                 <button class="messageDelete">Delete</button>
-                <div class="message">${text}</div>
+                <div class="msgHolder">
+                    <div class="message">${text}</div>
+                    <span class="msgTime">${timeStr}</span>
+                </div>
             </div>
             `
         }
@@ -91,18 +109,7 @@ class App {
     }
 
     _changeTheme() {
-        if (theme.value === 'dark') {
-            document.body.classList.add('darkBG');
-            optionsEl.classList.add('darkOptions')
-            messageList.classList.add('darkMessages')
-            messageInput.classList.add('darkInput')
-
-        } else {
-            document.body.classList.remove('darkBG');
-            optionsEl.classList.remove('darkOptions')
-            messageList.classList.remove('darkMessages')
-            messageInput.classList.remove('darkInput')
-        }
+        stylesheet.href = `./${theme.value}.css`
     }
 
     _saveSettings(e) {

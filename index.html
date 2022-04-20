@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat system</title>
 
-    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+    <link id="stylesheet" rel="stylesheet" href="./dark.css">
     <script defer src="./app.js"></script>
 </head>
 <body>
@@ -49,7 +53,7 @@
 
             <div class="message-container msg-right">
                 <button class="messageDelete">Delete</button>
-                <div class="message" data-id="4">🔄 Messages alternate between senders automatically, though you can always turn it off in the drop-down menu above! <br><br> <i>P.S they automatically save when you leave the page</i> 😉</div>
+                <div class="message" data-id="4">🔄 Messages alternate between senders automatically, though you can always turn it off in the drop-down menu above! <br><br> <i>P.S settings automatically save when you leave the page</i> 😉</div>
             </div>
 
 
@@ -57,8 +61,10 @@
         </div>
 
         <form action="" id="messageForm" autocomplete="off">
-            <input autocomplete="off" class="messageInput" id="messageInput" type="text" placeholder="Your message here." maxlength="200" minlength="3" >
-            <!-- <button id="messageSubmit" type="submit">Send</button> -->
+            <div class="inputContainer">
+                <input autocomplete="off" id="messageInput" type="text" placeholder="Your message here." maxlength="200">
+                <button id="messageSubmit" type="submit">Send</button>
+            </div>
         </form>
     </div>
 </body>
