@@ -6,7 +6,6 @@ const messageInput = document.getElementById('messageInput');
 const messageList = document.getElementById('messages');
 const messageType = document.getElementById('messageType');
 const optionsEl = document.querySelector('.options');
-const inputCont = document.querySelector('.inputContainer');
 
 const alternate = document.getElementById('alternate');
 const theme = document.getElementById('theme');
@@ -18,6 +17,7 @@ class App {
 
     constructor() {
         this._loadSettings();
+        document.addEventListener('keydown', this._shortcuts.bind(this))
 
         messageForm.addEventListener('submit', this._onFormSubmit.bind(this));
 
@@ -27,9 +27,6 @@ class App {
         messageList.addEventListener('click', this._onMessageDelete);
 
         optionsEl.addEventListener('change', this._saveSettings.bind(this))
-        // alternate.addEventListener('change', this._saveSettings.bind(this))
-        // messageType.addEventListener('change', this._saveSettings.bind(this))
-        // theme.addEventListener('change', this._saveSettings.bind(this))
     }
 
     // When the user tries to send a message
@@ -127,6 +124,23 @@ class App {
             alternate.value = options.alt
             theme.value = options.theme
 
+            this._changeTheme()
+        }
+    }
+
+    _shortcuts(e) {
+        e.preventDefault();
+
+        if (e.ctrlKey && e.code === "KeyD") {
+            messageType.value === 'msg-right' ? messageType.value = 'msg-left' : messageType.value = 'msg-right'
+        }
+
+        if (e.ctrlKey && e.code === "KeyF") {
+            alternate.value === 'true' ? alternate.value = 'false' : alternate.value = 'true'
+        }
+
+        if (e.ctrlKey && e.code === "KeyG") {
+            theme.value === 'light' ? theme.value = 'dark' : theme.value = 'light'
             this._changeTheme()
         }
     }
