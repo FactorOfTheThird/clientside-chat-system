@@ -129,19 +129,21 @@ class App {
     }
 
     _shortcuts(e) {
-        e.preventDefault();
+        if (e.shiftKey) {
+            e.preventDefault();
 
-        if (e.ctrlKey && e.code === "KeyD") {
-            messageType.value === 'msg-right' ? messageType.value = 'msg-left' : messageType.value = 'msg-right'
-        }
-
-        if (e.ctrlKey && e.code === "KeyF") {
-            alternate.value === 'true' ? alternate.value = 'false' : alternate.value = 'true'
-        }
-
-        if (e.ctrlKey && e.code === "KeyG") {
-            theme.value === 'light' ? theme.value = 'dark' : theme.value = 'light'
-            this._changeTheme()
+            switch (e.code) {
+                case 'KeyD':
+                    messageType.value === 'msg-right' ? messageType.value = 'msg-left' : messageType.value = 'msg-right'
+                    break;
+                case 'KeyF':
+                    alternate.value === 'true' ? alternate.value = 'false' : alternate.value = 'true'
+                    break;
+                case 'KeyG':
+                    theme.value === 'light' ? theme.value = 'dark' : theme.value = 'light'
+                    this._changeTheme()
+                    break;
+            }
         }
     }
 }
